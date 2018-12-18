@@ -1,31 +1,46 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+    <AdminSidebar />
+    <div class="main">
+      <AdminHeader />
+      <div class="content">
+        <RouterView />
+      </div>
     </div>
-    <router-view/>
   </div>
 </template>
 
+<script>
+import AdminSidebar from '@/components/common/AdminSidebar.vue'
+import AdminHeader from '@/components/common/AdminHeader.vue'
+
+export default {
+  name: 'App',
+  components: {
+    AdminSidebar,
+    AdminHeader
+  }
+}
+</script>
+
 <style>
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-#nav {
-  padding: 30px;
+  display: flex;
 }
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
+.main {
+  flex: auto;
+  display: flex;
+  flex-flow: column;
+  overflow-x: hidden;
+  height: 100vh;
 }
 
-#nav a.router-link-exact-active {
-  color: #42b983;
+.content {
+  padding: 15px;
+  background-color: #fafafa;
+  flex: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 </style>
