@@ -5,11 +5,11 @@
       class="breadcrumb"
     >
       <ElBreadcrumbItem>用户管理</ElBreadcrumbItem>
-      <ElBreadcrumbItem>用户列表</ElBreadcrumbItem>
+      <ElBreadcrumbItem>编辑用户</ElBreadcrumbItem>
     </ElBreadcrumb>
     <div
       v-loading="loading"
-      class="user-table"
+      class="table"
     >
       <ElTable
         :data="userList"
@@ -110,7 +110,6 @@
 
 <script>
 import moment from 'moment'
-import * as api from '@/api/userApi.js'
 
 const genderMap = {
   0: '未知',
@@ -176,7 +175,7 @@ export default {
         'pageNo': this.page,
         'pageSize': this.pageSize
       }
-      api.getUserList(params)
+      this.$axios.get('/api/application/user/userList', { params })
         .then((response) => {
           this.userList = response.data.list
           this.pageTotal = Number(response.data.pageTotal)
@@ -213,7 +212,7 @@ export default {
         this.$message.error('请先选择用户再操作')
         return false
       }
-      api.updateStatus(params)
+      this.$axios.post('/api/application/user/updateStatus', params)
         .then((response) => {
           this.loading = false
           this.getUserList()
@@ -229,8 +228,8 @@ export default {
       this.multipleSelection = val
     },
     editUser (userId) {
-      const params = { userId }
-      api.userEdit(params)
+      const query = { userId }
+      this.$router.push({ path: '/userEdit', query })
     }
   }
 }
@@ -242,7 +241,7 @@ export default {
   background-color: #fff;
 }
 
-.user-table {
+.table {
   margin-top: 15px;
   padding: 15px;
   background-color: #fff;

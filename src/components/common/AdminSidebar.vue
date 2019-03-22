@@ -38,6 +38,8 @@ export default {
 .sidebar {
   flex: none;
   width: 220px;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 .el-menu-vertical-demo {
   height: 100vh;

@@ -12,10 +12,10 @@
         <ElMenuItem index="1-1">
           我的信息
         </ElMenuItem>
-        <ElMenuItem index="1-3">
+        <ElMenuItem index="1-2">
           修改密码
         </ElMenuItem>
-        <ElMenuItem index="1-2">
+        <ElMenuItem index="1-3">
           注销
         </ElMenuItem>
       </ElSubmenu>
